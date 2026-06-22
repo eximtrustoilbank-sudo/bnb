@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BNB — Bridge Nexus Blockchain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0e14;
+            color: #eef2f8;
+            line-height: 1.6;
+        }
+        a { color: #f5a623; text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ——— HEADER ——— */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            background: rgba(11,14,20,0.92);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .logo img { height: 36px; width: auto; }
+        .logo span { color: #f5a623; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .nav-links a { color: #8892b0; transition: 0.2s; }
+        .nav-links a:hover { color: #f5a623; }
+        .nav-links .active { color: #f5a623; font-weight: 600; }
+        .btn-buy {
+            background: linear-gradient(135deg, #f5a623, #e08e0b);
+            color: #0b0e14 !important;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .btn-buy:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(245,166,35,0.3); }
+
+        /* ——— LANGUAGE SWITCHER ——— */
+        .lang-switcher { position: relative; display: inline-block; margin-left: 4px; }
+        .lang-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #eef2f8; padding: 4px 12px; border-radius: 40px; font-size: 12px; cursor: pointer; font-weight: 600; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+        .lang-btn:hover { background: rgba(245,166,35,0.1); border-color: #f5a623; }
+        .lang-dropdown { position: absolute; top: 120%; right: 0; background: #0b0e14; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 6px 0; min-width: 140px; display: none; z-index: 999; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .lang-dropdown.show { display: block; }
+        .lang-dropdown button { background: none; border: none; color: #8892b0; padding: 6px 18px; width: 100%; text-align: left; font-size: 12px; font-weight: 500; cursor: pointer; transition: 0.1s; font-family: inherit; }
+        .lang-dropdown button:hover { background: rgba(245,166,35,0.05); color: #f5a623; }
+        .lang-dropdown button.active { color: #f5a623; font-weight: 700; }
+
+        /* ——— HERO ——— */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #0b0e14 0%, #131a24 100%);
+        }
+        .hero-image {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 32px;
+            border-radius: 24px;
+            box-shadow: 0 0 60px rgba(245,166,35,0.15);
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 7vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .hero h1 .highlight { color: #f5a623; }
+        .hero p {
+            font-size: 1.2rem;
+            color: #8892b0;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f5a623, #e08e0b);
+            color: #0b0e14 !important;
+            font-weight: 700;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            display: inline-block;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(245,166,35,0.3); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #eef2f8 !important;
+            font-weight: 600;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: #f5a623; }
+
+        /* ——— STATS ——— */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            padding: 40px 0 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.02);
+        }
+        .stat-item .number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #f5a623;
+        }
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: #8892b0;
+            margin-top: 4px;
+        }
+
+        /* ——— ECOSYSTEM ——— */
+        .ecosystem { padding: 20px 0 60px; }
+        .ecosystem h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .ecosystem .sub {
+            text-align: center;
+            color: #8892b0;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .eco-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 28px 20px 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.25s;
+        }
+        .eco-card:hover { border-color: #f5a623; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .eco-card .icon { font-size: 2.4rem; margin-bottom: 10px; }
+        .eco-card h3 { font-size: 1.1rem; margin-bottom: 4px; color: #fff; }
+        .eco-card p { font-size: 0.9rem; color: #8892b0; }
+        .eco-card .link-btn {
+            display: inline-block;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #f5a623;
+            font-size: 0.9rem;
+        }
+        .eco-card .link-btn:hover { color: #e08e0b; }
+
+        .contract-box { text-align: center; padding: 20px 0 40px; }
+        .contract-box code {
+            background: rgba(255,255,255,0.03);
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #8892b0;
+            border: 1px solid rgba(255,255,255,0.04);
+            display: inline-block;
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #5a6488;
+            font-size: 0.85rem;
+        }
+        footer .socials a {
+            color: #8892b0;
+            margin: 0 14px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        footer .socials a:hover { color: #f5a623; }
+
+        @media (max-width: 700px) {
+            .header-inner { flex-direction: column; align-items: stretch; text-align: center; }
+            .nav-links { justify-content: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .eco-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) { .eco-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_logo.png" alt="BNB">
+            <span>BNB</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="active" data-i18n="nav-home">Home</a>
+            <a href="trade.html" data-i18n="nav-trade">Trade</a>
+            <a href="staking.html" data-i18n="nav-staking">Staking</a>
+            <a href="dao.html" data-i18n="nav-dao">DAO</a>
+            <a href="bridge.html" data-i18n="nav-bridge">Bridge</a>
+            <a href="#" class="btn-buy" data-i18n="nav-buy">Buy BNB</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggle">🌐 <span id="currentLangLabel">EN</span></button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button data-lang="en" class="active">🇬🇧 English</button>
+                    <button data-lang="ru">🇷🇺 Русский</button>
+                    <button data-lang="es">🇪🇸 Español</button>
+                    <button data-lang="fr">🇫🇷 Français</button>
+                    <button data-lang="de">🇩🇪 Deutsch</button>
+                    <button data-lang="zh">🇨🇳 中文</button>
+                    <button data-lang="ja">🇯🇵 日本語</button>
+                    <button data-lang="ko">🇰🇷 한국어</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_logo.png" alt="BNB" class="hero-image">
+        <h1 data-i18n="hero-title">Bridge the <span class="highlight">chains.</span></h1>
+        <p data-i18n="hero-desc">BNB (Bridge Nexus Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary" data-i18n="hero-btn">🚀 Get BNB</a>
+            <a href="#ecosystem" class="btn-secondary" data-i18n="hero-btn2">Explore</a>
+        </div>
+    </div>
+</section>
+
+<div class="container stats">
+    <div class="stat-item"><div class="number">10B</div><div class="label" data-i18n="stat-supply">Total Supply</div></div>
+    <div class="stat-item"><div class="number">0.5%</div><div class="label" data-i18n="stat-fee">Transfer Fee</div></div>
+    <div class="stat-item"><div class="number">Solana</div><div class="label" data-i18n="stat-network">Network</div></div>
+    <div class="stat-item"><div class="number">🛡️</div><div class="label" data-i18n="stat-insurance">Insurance Fund</div></div>
+</div>
+
+<section class="container ecosystem" id="ecosystem">
+    <h2 data-i18n="eco-title">🌐 BNB Ecosystem</h2>
+    <p class="sub" data-i18n="eco-sub">Four pillars that make BNB the nexus of cross-chain</p>
+    <div class="eco-grid">
+        <div class="eco-card">
+            <div class="icon">📊</div>
+            <h3 data-i18n="eco-trade-title">Trade</h3>
+            <p data-i18n="eco-trade-desc">Buy and sell BNB on Meteora with deep liquidity.</p>
+            <a href="trade.html" class="link-btn" data-i18n="eco-trade-btn">Go →</a>
+        </div>
+        <div class="eco-card">
+            <div class="icon">🪙</div>
+            <h3 data-i18n="eco-staking-title">Staking</h3>
+            <p data-i18n="eco-staking-desc">Lock your BNB and earn passive income with high APR.</p>
+            <a href="staking.html" class="link-btn" data-i18n="eco-staking-btn">Go →</a>
+        </div>
+        <div class="eco-card">
+            <div class="icon">🏛️</div>
+            <h3 data-i18n="eco-dao-title">DAO</h3>
+            <p data-i18n="eco-dao-desc">Vote on proposals and shape the future of the ecosystem.</p>
+            <a href="dao.html" class="link-btn" data-i18n="eco-dao-btn">Go →</a>
+        </div>
+        <div class="eco-card">
+            <div class="icon">🌉</div>
+            <h3 data-i18n="eco-bridge-title">Bridge</h3>
+            <p data-i18n="eco-bridge-desc">Move assets between Solana and other networks.</p>
+            <a href="bridge.html" class="link-btn" data-i18n="eco-bridge-btn">Go →</a>
+        </div>
+    </div>
+</section>
+
+<div class="container contract-box">
+    <code>📜 BNB: 4joNw9GfuZ1f3MiBkyj3uKeq4ENLTfaMWWWpUkHPj4te</code>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="socials">
+            <a href="#" data-i18n="footer-twitter">🐦 Twitter</a>
+            <a href="#" data-i18n="footer-telegram">💬 Telegram</a>
+            <a href="#" data-i18n="footer-gecko">📊 GeckoTerminal</a>
+            <a href="#" data-i18n="footer-coingecko">📈 CoinGecko</a>
+        </div>
+        <p data-i18n="footer-copy">© 2026 BNB Protocol. Built on Solana.</p>
+    </div>
+</footer>
+
+<script>
+    // ============================================================
+    // 8 ЯЗЫКОВ — ПЕРЕВОДЧИК
+    // ============================================================
+
+    const translations = {
+        en: {
+            'nav-home': 'Home', 'nav-trade': 'Trade', 'nav-staking': 'Staking',
+            'nav-dao': 'DAO', 'nav-bridge': 'Bridge', 'nav-buy': 'Buy BNB',
+            'hero-title': 'Bridge the chains.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.',
+            'hero-btn': '🚀 Get BNB', 'hero-btn2': 'Explore',
+            'stat-supply': 'Total Supply', 'stat-fee': 'Transfer Fee',
+            'stat-network': 'Network', 'stat-insurance': 'Insurance Fund',
+            'eco-title': '🌐 BNB Ecosystem',
+            'eco-sub': 'Four pillars that make BNB the nexus of cross-chain',
+            'eco-trade-title': 'Trade', 'eco-trade-desc': 'Buy and sell BNB on Meteora with deep liquidity.',
+            'eco-trade-btn': 'Go →',
+            'eco-staking-title': 'Staking', 'eco-staking-desc': 'Lock your BNB and earn passive income with high APR.',
+            'eco-staking-btn': 'Go →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': 'Vote on proposals and shape the future of the ecosystem.',
+            'eco-dao-btn': 'Go →',
+            'eco-bridge-title': 'Bridge', 'eco-bridge-desc': 'Move assets between Solana and other networks.',
+            'eco-bridge-btn': 'Go →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Built on Solana.'
+        },
+        ru: {
+            'nav-home': 'Главная', 'nav-trade': 'Торги', 'nav-staking': 'Стейкинг',
+            'nav-dao': 'Управление', 'nav-bridge': 'Мост', 'nav-buy': 'Купить BNB',
+            'hero-title': 'Мост между цепочками.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) соединяет Solana с BSC и Ethereum. Один токен. Бесконечные мосты.',
+            'hero-btn': '🚀 Получить BNB', 'hero-btn2': 'Исследовать',
+            'stat-supply': 'Общий запас', 'stat-fee': 'Комиссия',
+            'stat-network': 'Сеть', 'stat-insurance': 'Страховой фонд',
+            'eco-title': '🌐 Экосистема BNB',
+            'eco-sub': 'Четыре столпа, которые делают BNB центром кросс-чейна',
+            'eco-trade-title': 'Торги', 'eco-trade-desc': 'Покупайте и продавайте BNB на Meteora с глубокой ликвидностью.',
+            'eco-trade-btn': 'Перейти →',
+            'eco-staking-title': 'Стейкинг', 'eco-staking-desc': 'Заморозьте BNB и получайте пассивный доход с высоким APR.',
+            'eco-staking-btn': 'Перейти →',
+            'eco-dao-title': 'Управление', 'eco-dao-desc': 'Голосуйте за предложения и формируйте будущее экосистемы.',
+            'eco-dao-btn': 'Перейти →',
+            'eco-bridge-title': 'Мост', 'eco-bridge-desc': 'Перемещайте активы между Solana и другими сетями.',
+            'eco-bridge-btn': 'Перейти →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Создано на Solana.'
+        },
+        es: {
+            'nav-home': 'Inicio', 'nav-trade': 'Comerciar', 'nav-staking': 'Staking',
+            'nav-dao': 'DAO', 'nav-bridge': 'Puente', 'nav-buy': 'Comprar BNB',
+            'hero-title': 'Puente entre cadenas.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) conecta Solana con BSC y Ethereum. Un token. Puentes infinitos.',
+            'hero-btn': '🚀 Obtener BNB', 'hero-btn2': 'Explorar',
+            'stat-supply': 'Suministro total', 'stat-fee': 'Comisión',
+            'stat-network': 'Red', 'stat-insurance': 'Fondo de seguro',
+            'eco-title': '🌐 Ecosistema BNB',
+            'eco-sub': 'Cuatro pilares que hacen de BNB el nexo del cross-chain',
+            'eco-trade-title': 'Comercio', 'eco-trade-desc': 'Compra y vende BNB en Meteora con alta liquidez.',
+            'eco-trade-btn': 'Ir →',
+            'eco-staking-title': 'Staking', 'eco-staking-desc': 'Bloquea tus BNB y obtén ingresos pasivos con alto APR.',
+            'eco-staking-btn': 'Ir →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': 'Vota propuestas y da forma al futuro del ecosistema.',
+            'eco-dao-btn': 'Ir →',
+            'eco-bridge-title': 'Puente', 'eco-bridge-desc': 'Mueve activos entre Solana y otras redes.',
+            'eco-bridge-btn': 'Ir →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Construido en Solana.'
+        },
+        fr: {
+            'nav-home': 'Accueil', 'nav-trade': 'Échanger', 'nav-staking': 'Staking',
+            'nav-dao': 'DAO', 'nav-bridge': 'Pont', 'nav-buy': 'Acheter BNB',
+            'hero-title': 'Pont entre chaînes.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) connecte Solana avec BSC et Ethereum. Un token. Ponts infinis.',
+            'hero-btn': '🚀 Obtenir BNB', 'hero-btn2': 'Explorer',
+            'stat-supply': 'Offre totale', 'stat-fee': 'Frais',
+            'stat-network': 'Réseau', 'stat-insurance': 'Fonds d\'assurance',
+            'eco-title': '🌐 Écosystème BNB',
+            'eco-sub': 'Quatre piliers qui font de BNB le nexus du cross-chain',
+            'eco-trade-title': 'Échange', 'eco-trade-desc': 'Achetez et vendez BNB sur Meteora avec une liquidité profonde.',
+            'eco-trade-btn': 'Aller →',
+            'eco-staking-title': 'Staking', 'eco-staking-desc': 'Bloquez vos BNB et gagnez des revenus passifs avec un APR élevé.',
+            'eco-staking-btn': 'Aller →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': 'Votez sur les propositions et façonnez l\'avenir de l\'écosystème.',
+            'eco-dao-btn': 'Aller →',
+            'eco-bridge-title': 'Pont', 'eco-bridge-desc': 'Déplacez des actifs entre Solana et d\'autres réseaux.',
+            'eco-bridge-btn': 'Aller →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Construit sur Solana.'
+        },
+        de: {
+            'nav-home': 'Startseite', 'nav-trade': 'Handeln', 'nav-staking': 'Staking',
+            'nav-dao': 'DAO', 'nav-bridge': 'Brücke', 'nav-buy': 'BNB kaufen',
+            'hero-title': 'Brücke zwischen Blockchains.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) verbindet Solana mit BSC und Ethereum. Ein Token. Unendliche Brücken.',
+            'hero-btn': '🚀 BNB erhalten', 'hero-btn2': 'Entdecken',
+            'stat-supply': 'Gesamtangebot', 'stat-fee': 'Gebühr',
+            'stat-network': 'Netzwerk', 'stat-insurance': 'Versicherungsfonds',
+            'eco-title': '🌐 BNB-Ökosystem',
+            'eco-sub': 'Vier Säulen, die BNB zum Nexus des Cross-Chain machen',
+            'eco-trade-title': 'Handel', 'eco-trade-desc': 'Kaufen und verkaufen Sie BNB auf Meteora mit hoher Liquidität.',
+            'eco-trade-btn': 'Gehe →',
+            'eco-staking-title': 'Staking', 'eco-staking-desc': 'Sperre deine BNB und verdiene passives Einkommen mit hohem APR.',
+            'eco-staking-btn': 'Gehe →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': 'Stimme über Vorschläge ab und gestalte die Zukunft des Ökosystems.',
+            'eco-dao-btn': 'Gehe →',
+            'eco-bridge-title': 'Brücke', 'eco-bridge-desc': 'Bewege Vermögenswerte zwischen Solana und anderen Netzwerken.',
+            'eco-bridge-btn': 'Gehe →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Erbaut auf Solana.'
+        },
+        zh: {
+            'nav-home': '首页', 'nav-trade': '交易', 'nav-staking': '质押',
+            'nav-dao': 'DAO', 'nav-bridge': '跨链桥', 'nav-buy': '购买 BNB',
+            'hero-title': '跨链之桥。',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) 连接 Solana、BSC 和 Ethereum。一个代币，无限桥梁。',
+            'hero-btn': '🚀 获取 BNB', 'hero-btn2': '探索',
+            'stat-supply': '总供应量', 'stat-fee': '转账费',
+            'stat-network': '网络', 'stat-insurance': '保险基金',
+            'eco-title': '🌐 BNB 生态系统',
+            'eco-sub': '四大支柱使 BNB 成为跨链的中心',
+            'eco-trade-title': '交易', 'eco-trade-desc': '在 Meteora 上买卖 BNB，具有高流动性。',
+            'eco-trade-btn': '前往 →',
+            'eco-staking-title': '质押', 'eco-staking-desc': '锁定您的 BNB 并获得被动收入，APR 很高。',
+            'eco-staking-btn': '前往 →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': '对提案进行投票，塑造生态系统的未来。',
+            'eco-dao-btn': '前往 →',
+            'eco-bridge-title': '跨链桥', 'eco-bridge-desc': '在 Solana 和其他网络之间转移资产。',
+            'eco-bridge-btn': '前往 →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. 基于 Solana 构建。'
+        },
+        ja: {
+            'nav-home': 'ホーム', 'nav-trade': '取引', 'nav-staking': 'ステーキング',
+            'nav-dao': 'DAO', 'nav-bridge': 'ブリッジ', 'nav-buy': 'BNBを購入',
+            'hero-title': 'チェーンをつなぐ橋。',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain) は Solana と BSC、Ethereum を接続します。1つのトークンで無限のブリッジ。',
+            'hero-btn': '🚀 BNBを入手', 'hero-btn2': '探索する',
+            'stat-supply': '総供給量', 'stat-fee': '転送手数料',
+            'stat-network': 'ネットワーク', 'stat-insurance': '保険基金',
+            'eco-title': '🌐 BNBエコシステム',
+            'eco-sub': 'BNBをクロスチェーンの中心にする4つの柱',
+            'eco-trade-title': '取引', 'eco-trade-desc': 'MeteoraでBNBを売買、高い流動性。',
+            'eco-trade-btn': '行く →',
+            'eco-staking-title': 'ステーキング', 'eco-staking-desc': 'BNBをロックして受動的収入を得る、高APR。',
+            'eco-staking-btn': '行く →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': '提案に投票し、エコシステムの未来を形作る。',
+            'eco-dao-btn': '行く →',
+            'eco-bridge-title': 'ブリッジ', 'eco-bridge-desc': 'Solanaと他のネットワーク間で資産を移動。',
+            'eco-bridge-btn': '行く →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Solana上に構築。'
+        },
+        ko: {
+            'nav-home': '홈', 'nav-trade': '거래', 'nav-staking': '스테이킹',
+            'nav-dao': 'DAO', 'nav-bridge': '브리지', 'nav-buy': 'BNB 구매',
+            'hero-title': '체인을 연결하는 다리.',
+            'hero-desc': 'BNB (Bridge Nexus Blockchain)는 Solana와 BSC, Ethereum을 연결합니다. 하나의 토큰으로 무한한 브리지.',
+            'hero-btn': '🚀 BNB 받기', 'hero-btn2': '탐색',
+            'stat-supply': '총 공급량', 'stat-fee': '전송 수수료',
+            'stat-network': '네트워크', 'stat-insurance': '보험 기금',
+            'eco-title': '🌐 BNB 생태계',
+            'eco-sub': 'BNB를 크로스체인의 중심으로 만드는 4가지 기둥',
+            'eco-trade-title': '거래', 'eco-trade-desc': 'Meteora에서 높은 유동성으로 BNB를 사고팔 수 있습니다.',
+            'eco-trade-btn': '이동 →',
+            'eco-staking-title': '스테이킹', 'eco-staking-desc': 'BNB를 잠그고 높은 APR로 수동적 소득을 얻으세요.',
+            'eco-staking-btn': '이동 →',
+            'eco-dao-title': 'DAO', 'eco-dao-desc': '제안에 투표하고 생태계의 미래를 형성하세요.',
+            'eco-dao-btn': '이동 →',
+            'eco-bridge-title': '브리지', 'eco-bridge-desc': 'Solana와 다른 네트워크 간에 자산을 이동하세요.',
+            'eco-bridge-btn': '이동 →',
+            'footer-twitter': '🐦 Twitter', 'footer-telegram': '💬 Telegram',
+            'footer-gecko': '📊 GeckoTerminal', 'footer-coingecko': '📈 CoinGecko',
+            'footer-copy': '© 2026 BNB Protocol. Solana에서 구축됨.'
+        }
+    };
+
+    let currentLang = localStorage.getItem('bnbLang') || 'en';
+
+    function applyLanguage(lang) {
+        if (!translations[lang]) return;
+        const t = translations[lang];
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = t[key];
+                } else {
+                    el.textContent = t[key];
+                }
+            }
+        });
+        document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+        document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        localStorage.setItem('bnbLang', lang);
+        currentLang = lang;
+    }
+
+    document.getElementById('langToggle').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('langDropdown').classList.toggle('show');
+    });
+    document.addEventListener('click', () => {
+        document.getElementById('langDropdown').classList.remove('show');
+    });
+    document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            applyLanguage(btn.dataset.lang);
+            document.getElementById('langDropdown').classList.remove('show');
+        });
+    });
+    applyLanguage(currentLang);
+</script>
+</body>
+</html>
