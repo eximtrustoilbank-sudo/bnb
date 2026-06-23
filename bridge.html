@@ -79,12 +79,13 @@
 
         .page-banner {
             width: 100%;
-            max-height: 200px;
+            max-height: 250px;
             object-fit: cover;
             border-radius: 16px;
             margin: 0 auto 30px;
             display: block;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.04);
         }
 
         .bridge-widget {
@@ -194,6 +195,7 @@
             .nav-links { justify-content: center; }
             .page-header h1 { font-size: 1.8rem; }
             .bridge-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .page-banner { max-height: 150px; }
         }
     </style>
 </head>
@@ -235,7 +237,7 @@
         <p data-i18n="page-desc">Move assets between Solana and other networks</p>
     </div>
 
-    <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_logo.png" alt="BNB Bridge" class="page-banner">
+    <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_bridge.png" alt="BNB Bridge" class="page-banner">
 
     <div class="bridge-widget">
         <div class="row"><span data-i18n="bridge-from">From</span><span data-i18n="bridge-balance">Balance: 12,450 BNB</span></div>
