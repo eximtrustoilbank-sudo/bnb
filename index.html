@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BNB — Bridge Nexus Blockchain</title>
+    <title>BNB — Bridge Native Blockchain</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,7 +16,6 @@
         a { color: #f5a623; text-decoration: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* ——— HEADER ——— */
         header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -64,7 +63,6 @@
         }
         .btn-buy:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(245,166,35,0.3); }
 
-        /* ——— LANGUAGE SWITCHER ——— */
         .lang-switcher { position: relative; display: inline-block; margin-left: 4px; }
         .lang-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #eef2f8; padding: 4px 12px; border-radius: 40px; font-size: 12px; cursor: pointer; font-weight: 600; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
         .lang-btn:hover { background: rgba(245,166,35,0.1); border-color: #f5a623; }
@@ -74,18 +72,19 @@
         .lang-dropdown button:hover { background: rgba(245,166,35,0.05); color: #f5a623; }
         .lang-dropdown button.active { color: #f5a623; font-weight: 700; }
 
-        /* ——— HERO ——— */
         .hero {
-            padding: 80px 0 60px;
+            padding: 60px 0 40px;
             text-align: center;
             background: linear-gradient(180deg, #0b0e14 0%, #131a24 100%);
         }
         .hero-image {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 32px;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
             border-radius: 24px;
-            box-shadow: 0 0 60px rgba(245,166,35,0.15);
+            margin-bottom: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.04);
         }
         .hero h1 {
             font-size: clamp(2.6rem, 7vw, 4.2rem);
@@ -134,7 +133,6 @@
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: #f5a623; }
 
-        /* ——— STATS ——— */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -161,7 +159,6 @@
             margin-top: 4px;
         }
 
-        /* ——— ECOSYSTEM ——— */
         .ecosystem { padding: 20px 0 60px; }
         .ecosystem h2 {
             text-align: center;
@@ -236,6 +233,7 @@
             .nav-links { justify-content: center; }
             .hero h1 { font-size: 2.4rem; }
             .eco-grid { grid-template-columns: 1fr 1fr; }
+            .hero-image { border-radius: 16px; }
         }
         @media (max-width: 480px) { .eco-grid { grid-template-columns: 1fr; } }
     </style>
@@ -274,9 +272,9 @@
 
 <section class="hero">
     <div class="container">
-        <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_logo.png" alt="BNB" class="hero-image">
+        <img src="https://raw.githubusercontent.com/eximtrustoilbank-sudo/bnb/main/bnb_index.jpg" alt="BNB — Bridge Native Blockchain" class="hero-image">
         <h1 data-i18n="hero-title">Bridge the <span class="highlight">chains.</span></h1>
-        <p data-i18n="hero-desc">BNB (Bridge Nexus Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.</p>
+        <p data-i18n="hero-desc">BNB (Bridge Native Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.</p>
         <div class="hero-buttons">
             <a href="#" class="btn-primary" data-i18n="hero-btn">🚀 Get BNB</a>
             <a href="#ecosystem" class="btn-secondary" data-i18n="hero-btn2">Explore</a>
@@ -348,7 +346,7 @@
             'nav-home': 'Home', 'nav-trade': 'Trade', 'nav-staking': 'Staking',
             'nav-dao': 'DAO', 'nav-bridge': 'Bridge', 'nav-buy': 'Buy BNB',
             'hero-title': 'Bridge the chains.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.',
+            'hero-desc': 'BNB (Bridge Native Blockchain) connects Solana with BSC and Ethereum. One token. Infinite bridges.',
             'hero-btn': '🚀 Get BNB', 'hero-btn2': 'Explore',
             'stat-supply': 'Total Supply', 'stat-fee': 'Transfer Fee',
             'stat-network': 'Network', 'stat-insurance': 'Insurance Fund',
@@ -370,7 +368,7 @@
             'nav-home': 'Главная', 'nav-trade': 'Торги', 'nav-staking': 'Стейкинг',
             'nav-dao': 'Управление', 'nav-bridge': 'Мост', 'nav-buy': 'Купить BNB',
             'hero-title': 'Мост между цепочками.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) соединяет Solana с BSC и Ethereum. Один токен. Бесконечные мосты.',
+            'hero-desc': 'BNB (Bridge Native Blockchain) соединяет Solana с BSC и Ethereum. Один токен. Бесконечные мосты.',
             'hero-btn': '🚀 Получить BNB', 'hero-btn2': 'Исследовать',
             'stat-supply': 'Общий запас', 'stat-fee': 'Комиссия',
             'stat-network': 'Сеть', 'stat-insurance': 'Страховой фонд',
@@ -392,7 +390,7 @@
             'nav-home': 'Inicio', 'nav-trade': 'Comerciar', 'nav-staking': 'Staking',
             'nav-dao': 'DAO', 'nav-bridge': 'Puente', 'nav-buy': 'Comprar BNB',
             'hero-title': 'Puente entre cadenas.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) conecta Solana con BSC y Ethereum. Un token. Puentes infinitos.',
+            'hero-desc': 'BNB (Bridge Native Blockchain) conecta Solana con BSC y Ethereum. Un token. Puentes infinitos.',
             'hero-btn': '🚀 Obtener BNB', 'hero-btn2': 'Explorar',
             'stat-supply': 'Suministro total', 'stat-fee': 'Comisión',
             'stat-network': 'Red', 'stat-insurance': 'Fondo de seguro',
@@ -414,7 +412,7 @@
             'nav-home': 'Accueil', 'nav-trade': 'Échanger', 'nav-staking': 'Staking',
             'nav-dao': 'DAO', 'nav-bridge': 'Pont', 'nav-buy': 'Acheter BNB',
             'hero-title': 'Pont entre chaînes.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) connecte Solana avec BSC et Ethereum. Un token. Ponts infinis.',
+            'hero-desc': 'BNB (Bridge Native Blockchain) connecte Solana avec BSC et Ethereum. Un token. Ponts infinis.',
             'hero-btn': '🚀 Obtenir BNB', 'hero-btn2': 'Explorer',
             'stat-supply': 'Offre totale', 'stat-fee': 'Frais',
             'stat-network': 'Réseau', 'stat-insurance': 'Fonds d\'assurance',
@@ -436,7 +434,7 @@
             'nav-home': 'Startseite', 'nav-trade': 'Handeln', 'nav-staking': 'Staking',
             'nav-dao': 'DAO', 'nav-bridge': 'Brücke', 'nav-buy': 'BNB kaufen',
             'hero-title': 'Brücke zwischen Blockchains.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) verbindet Solana mit BSC und Ethereum. Ein Token. Unendliche Brücken.',
+            'hero-desc': 'BNB (Bridge Native Blockchain) verbindet Solana mit BSC und Ethereum. Ein Token. Unendliche Brücken.',
             'hero-btn': '🚀 BNB erhalten', 'hero-btn2': 'Entdecken',
             'stat-supply': 'Gesamtangebot', 'stat-fee': 'Gebühr',
             'stat-network': 'Netzwerk', 'stat-insurance': 'Versicherungsfonds',
@@ -458,7 +456,7 @@
             'nav-home': '首页', 'nav-trade': '交易', 'nav-staking': '质押',
             'nav-dao': 'DAO', 'nav-bridge': '跨链桥', 'nav-buy': '购买 BNB',
             'hero-title': '跨链之桥。',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) 连接 Solana、BSC 和 Ethereum。一个代币，无限桥梁。',
+            'hero-desc': 'BNB (Bridge Native Blockchain) 连接 Solana、BSC 和 Ethereum。一个代币，无限桥梁。',
             'hero-btn': '🚀 获取 BNB', 'hero-btn2': '探索',
             'stat-supply': '总供应量', 'stat-fee': '转账费',
             'stat-network': '网络', 'stat-insurance': '保险基金',
@@ -480,7 +478,7 @@
             'nav-home': 'ホーム', 'nav-trade': '取引', 'nav-staking': 'ステーキング',
             'nav-dao': 'DAO', 'nav-bridge': 'ブリッジ', 'nav-buy': 'BNBを購入',
             'hero-title': 'チェーンをつなぐ橋。',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain) は Solana と BSC、Ethereum を接続します。1つのトークンで無限のブリッジ。',
+            'hero-desc': 'BNB (Bridge Native Blockchain) は Solana と BSC、Ethereum を接続します。1つのトークンで無限のブリッジ。',
             'hero-btn': '🚀 BNBを入手', 'hero-btn2': '探索する',
             'stat-supply': '総供給量', 'stat-fee': '転送手数料',
             'stat-network': 'ネットワーク', 'stat-insurance': '保険基金',
@@ -502,7 +500,7 @@
             'nav-home': '홈', 'nav-trade': '거래', 'nav-staking': '스테이킹',
             'nav-dao': 'DAO', 'nav-bridge': '브리지', 'nav-buy': 'BNB 구매',
             'hero-title': '체인을 연결하는 다리.',
-            'hero-desc': 'BNB (Bridge Nexus Blockchain)는 Solana와 BSC, Ethereum을 연결합니다. 하나의 토큰으로 무한한 브리지.',
+            'hero-desc': 'BNB (Bridge Native Blockchain)는 Solana와 BSC, Ethereum을 연결합니다. 하나의 토큰으로 무한한 브리지.',
             'hero-btn': '🚀 BNB 받기', 'hero-btn2': '탐색',
             'stat-supply': '총 공급량', 'stat-fee': '전송 수수료',
             'stat-network': '네트워크', 'stat-insurance': '보험 기금',
